@@ -1,0 +1,72 @@
+*{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    user-select: none;
+}
+body{
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+.all{
+    width: 85%;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+    border: 3px rgba(0, 0, 0, 0.1) solid;
+    padding: 2rem 3rem 3rem 3rem;
+    margin-block: 1.75rem;
+}
+.info{
+    width: 100%;
+}
+#code{
+    border: none;
+    border-bottom: 1.25px solid black;
+}
+#code:focus{
+    outline: none;
+    caret-color: transparent;
+}
+#ammount{
+    width: 2rem;
+    height: 2.25rem;
+}
+.green{
+    padding: 0.75rem;
+    font-size: 1.15rem;
+    border: none;
+    background-color: #4DB04F;
+    border-radius: 5px;
+    color: white;
+}
+#addToCart:hover{
+    cursor: pointer;
+}
+.hidden{
+    display: none;
+}
+.direct{
+    display: flex;
+    justify-content: space-around;
+}
+.cartItem{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-block: 0.5rem;
+}
+.directies{
+    border-bottom: black 1.25px solid;
+    width: 4.5rem;
+    text-align: center;
+}
+.item{
+    width: 25rem;
+    text-align: center;
+}
+.quantity{
+    color: black;
+    border: none;
+}
+.quantity::placeholder{
+    color: black;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="images.jpeg">
+    <title>Cashier Checkout</title>
+</head>
+<body>
+    <div class="all">
+        <div class="info">
+            <h1>Cashier Checkout</h1>
+            <div class="barCode">
+                <p>Scanned Barcode: <input id="code" type="text"></p>
+                <button id="addToCart" class="green">Add to Cart</button>
+                <input type="number" id="ammount">
+            </div>
+        </div>
+        <div class="cart hidden" id="cart">
+            <h1>Cart</h1>
+            <div class="direct">
+                <p class="directies"> Item </p>
+                <p class="directies"> Price </p>
+                <p class="directies"> Quantity </p>
+            </div>
+            <div id="itemsHolder">
+                <!-- <div class="cartItem">
+                    <p class="item">Example Item</p>
+                    <p class="item">$99.99</p>
+                    <input type="number" class="quantity item" placeholder="3">
+                </div>
+                <div class="cartItem">
+                    <p class="item">Example Item</p>
+                    <p class="item">$99.99</p>
+                    <input type="number" class="quantity item" placeholder="3">
+                </div>
+                <div class="cartItem">
+                    <p class="item">Example Item</p>
+                    <p class="item">$99.99</p>
+                    <input type="number" class="quantity item" placeholder="3">
+                </div> -->
+            </div>
+            <p>Total: <span id="totalValue">$$$</span></p>
+            <p>Total After Tax: <span id="afterTax">$$$</span></p>
+            <button id="Checkout" class="green">Checkout</button>
+        </div>
+    </div>
+</body>
+</html>
