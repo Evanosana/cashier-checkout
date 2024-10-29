@@ -25,7 +25,10 @@ function addItem(barVal) {
     }
     if(checkoutItems) {
         for(let i = 0; i < checkoutItems; i++) {
-
+            console.log(cartItemLocation.cartItem.innerText)
+            if(cartItemLocation.cartItem.innerText.includes(products[barVal].name)) {
+                console.log('YESSIR')
+            }
         }
     }
     barcode.value = '';
@@ -48,7 +51,7 @@ function addItem(barVal) {
     if(quant.value) {
         itemAmmount.innerText = quant.value;
     } else {
-        itemAmmount.innerText = 1
+        itemAmmount.innerText = 1;
     }
 
     cartItem.classList.add('cartItem');
@@ -125,4 +128,5 @@ function refocus() {
 }
 window.onload = refocus;
 barcode.addEventListener('blur', refocus);
+addItem(689145740844)
 addItem(689145740844)
