@@ -11,7 +11,6 @@ let checkoutItems = 0
 addToCart.addEventListener('click', function() {
     addItem(barcode.value);
 })
-
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         addItem(barcode.value);
@@ -19,21 +18,15 @@ document.addEventListener('keydown', function(event) {
 })
 
 function addItem(barVal) {
-    console.log(barVal);
     if(!(barVal in products)){
         return;
     }
-    if(checkoutItems) {
-        for(let i = 0; i < checkoutItems; i++) {
-            console.log(cartItemLocation.cartItem.innerText)
-            if(cartItemLocation.cartItem.innerText.includes(products[barVal].name)) {
-                console.log('YESSIR')
-            }
-        }
+    if(hasAccessKey(barVal)) {
+        hasAccessKey(barVal).lastChild.innerText = String(Number(hasAccessKey(barVal).lastChild.innerText) + Number(quant.value));
+        hasAccessKey(barVal).firstChild.nextSibling.innerText = String(Number(hasAccessKey(barVal).lastChild.innerText) * products[barVal].price);
+        // console.log(Number(hasAccessKey(barVal).lastChild.innerText) * Number(quant.value));
+        return;
     }
-    barcode.value = '';
-    checkoutItems++;
-    cart.classList.remove('hidden');
 
     const cartItem = document.createElement('div');
     const itemName = document.createElement('p');
@@ -59,13 +52,21 @@ function addItem(barVal) {
     itemPrice.classList.add('item');
     itemAmmount.classList.add('item');
 
-    cartItem.accessKey = checkoutItems
+    cartItem.accessKey = barVal; 
+    cart.classList.remove('hidden');
+    barcode.value = '';    
 
-
-    console.log(`accesskey = ${cartItem.accessKey}`)
-    console.log(cartItem.innerText)
-    console.log(cartItem.innerText.includes(products[barVal].name))
+    // console.log(`accesskey = ${cartItem.accessKey}`)
+    // console.log(cartItem.innerText)
+    // console.log(cartItem.innerText.includes(products[barVal].name))
+    // console.log(itemName)
 }
+function hasAccessKey(key) {
+    const itemsWithAccessKey = Array.from(cartItemLocation.children).filter(item => item.accessKey === key);
+    
+    return itemsWithAccessKey.length > 0 ? itemsWithAccessKey[0] : null;
+}
+
 
 
 
@@ -128,5 +129,5 @@ function refocus() {
 }
 window.onload = refocus;
 barcode.addEventListener('blur', refocus);
-addItem(689145740844)
-addItem(689145740844)
+addItem('689145740844');
+addItem('689145740844');
