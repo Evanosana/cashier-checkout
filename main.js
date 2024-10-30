@@ -8,8 +8,9 @@ let total = document.getElementById('totalValue');
 let totalAfterTax = document.getElementById('afterTax');
 let checkoutItems = 0
 
-addToCart.addEventListener('click', function() {
+addToCart.addEventListener('click', () => {
     addItem(barcode.value);
+
 })
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
