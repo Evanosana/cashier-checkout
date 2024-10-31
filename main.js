@@ -22,7 +22,8 @@ function addItem(barVal) {
         return;
     }
     if(hasAccessKey(barVal)) {
-        hasAccessKey(barVal).lastChild.innerText = String(Number(hasAccessKey(barVal).lastChild.innerText) + Number(quant.value || 1));
+        // hasAccessKey(barVal).lastChild.innerText = String(Number(hasAccessKey(barVal).lastChild.innerText) + Number(quant.value || 1));
+        hasAccessKey(barVal).lastChild.innerText = String(Number(hasAccessKey(barVal).lastChild.innerText) + 1);
         hasAccessKey(barVal).firstChild.nextSibling.innerText = String(Math.round(Number(hasAccessKey(barVal).lastChild.innerText) * products[barVal].price * 100) / 100);
 
         totalValue += Number(hasAccessKey(barVal).lastChild.innerText) * products[barVal].price
@@ -45,11 +46,12 @@ function addItem(barVal) {
     itemName.innerText = products[barVal].name;
     itemPrice.innerText = products[barVal].price;
 
-    if(quant.value) {
-        itemAmmount.innerText = quant.value;
-    } else {
-        itemAmmount.innerText = 1;
-    }
+    // if(quant.value) {
+    //     itemAmmount.innerText = quant.value;
+    // } else {
+    //     itemAmmount.innerText = 1;
+    // }
+    itemAmmount.innerText = 1;
 
     cartItem.classList.add('cartItem');
     itemName.classList.add('item');
@@ -143,6 +145,6 @@ function refocus() {
 }
 window.onload = refocus;
 barcode.addEventListener('blur', refocus);
-addItem('689145740844');
-addItem('689145740844');
+// addItem('689145740844');
+// addItem('689145740844');
 getAllPrices()
