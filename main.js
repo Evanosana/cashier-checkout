@@ -6,7 +6,6 @@ let barcode = document.getElementById('code');
 let quant = document.getElementById('ammount');
 let total = document.getElementById('totalValue');
 let totalAfterTax = document.getElementById('afterTax');
-let checkoutItems = 0
 
 addToCart.addEventListener('click', () => {
     addItem(barcode.value);
@@ -23,9 +22,13 @@ function addItem(barVal) {
         return;
     }
     if(hasAccessKey(barVal)) {
-        hasAccessKey(barVal).lastChild.innerText = String(Number(hasAccessKey(barVal).lastChild.innerText) + Number(quant.value));
-        hasAccessKey(barVal).firstChild.nextSibling.innerText = String(Number(hasAccessKey(barVal).lastChild.innerText) * products[barVal].price);
-        // console.log(Number(hasAccessKey(barVal).lastChild.innerText) * Number(quant.value));
+        hasAccessKey(barVal).lastChild.innerText = String(Number(hasAccessKey(barVal).lastChild.innerText) + Number(quant.value || 1));
+        hasAccessKey(barVal).firstChild.nextSibling.innerText = String(Math.round(Number(hasAccessKey(barVal).lastChild.innerText) * products[barVal].price * 100) / 100);
+
+        totalValue += Number(hasAccessKey(barVal).lastChild.innerText) * products[barVal].price
+        total.innerText = `$${getAllPrices()}`;
+        totalAfterTax.innerText = `$${(getAllPrices() * 1.0925).toFixed(2)}`;
+
         return;
     }
 
@@ -39,9 +42,9 @@ function addItem(barVal) {
     cartItem.appendChild(itemPrice);
     cartItem.appendChild(itemAmmount);
 
-    console.log(products[barVal].name);
     itemName.innerText = products[barVal].name;
     itemPrice.innerText = products[barVal].price;
+
     if(quant.value) {
         itemAmmount.innerText = quant.value;
     } else {
@@ -55,18 +58,28 @@ function addItem(barVal) {
 
     cartItem.accessKey = barVal; 
     cart.classList.remove('hidden');
-    barcode.value = '';    
-
-    // console.log(`accesskey = ${cartItem.accessKey}`)
-    // console.log(cartItem.innerText)
-    // console.log(cartItem.innerText.includes(products[barVal].name))
-    // console.log(itemName)
+    total.innerText = `$${getAllPrices()}`;
+    totalAfterTax.innerText = `$${(getAllPrices() * 1.0925).toFixed(2)}`;
 }
 function hasAccessKey(key) {
     const itemsWithAccessKey = Array.from(cartItemLocation.children).filter(item => item.accessKey === key);
     
     return itemsWithAccessKey.length > 0 ? itemsWithAccessKey[0] : null;
 }
+function getAllPrices() {
+    let total = Array.from(cartItemLocation.children).map(item => {
+        const priceElement = item.querySelector('.item:nth-child(2)');
+        return priceElement ? parseFloat(priceElement.innerText) : 0;
+    });
+    let all = 0;
+
+    for (let i = 0; i < total.length; i++) {
+        all += total[i];
+    }
+    return (Math.round(all * 100) / 100).toFixed(2);
+}
+
+
 
 
 
@@ -132,3 +145,4 @@ window.onload = refocus;
 barcode.addEventListener('blur', refocus);
 addItem('689145740844');
 addItem('689145740844');
+getAllPrices()
